@@ -15,6 +15,7 @@ android {
 
 dependencies {
     implementation(projects.core.compose)
+    implementation(projects.core.ui)
     implementation(projects.core.utils)
     implementation(projects.core.viewmodel)
     implementation(projects.feature.addNote.api)

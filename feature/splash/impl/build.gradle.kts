@@ -5,6 +5,7 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.core.ui)
     implementation(projects.core.utils)
     implementation(projects.feature.splash.api)
     implementation(projects.feature.noteList.api)

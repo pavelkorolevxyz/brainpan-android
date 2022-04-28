@@ -1,7 +1,7 @@
 package xyz.pavelkorolev.brainpan.feature.notelist.impl.view
 
+import androidx.lifecycle.ViewModelProvider
 import dagger.Component
-import xyz.pavelkorolev.brainpan.core.viewmodel.ViewModelFactory
 
 @Component(
     modules = [
@@ -13,7 +13,7 @@ import xyz.pavelkorolev.brainpan.core.viewmodel.ViewModelFactory
 )
 internal interface NoteListComponent {
 
-    val viewModelFactory: ViewModelFactory
+    val viewModelFactory: ViewModelProvider.Factory
 
     @Component.Factory
     interface Factory {

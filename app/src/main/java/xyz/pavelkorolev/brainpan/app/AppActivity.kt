@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.app.di.DaggerAppActivityComponent
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
+import xyz.pavelkorolev.brainpan.core.ui.BaseActivity
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
 import xyz.pavelkorolev.brainpan.feature.splash.api.SplashFeatureApi
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureDeps
@@ -26,9 +28,10 @@ interface AppActivityDeps {
  * Main activity of the app.
  */
 class AppActivity :
-    FragmentActivity(),
+    BaseActivity(),
     SplashFeatureDeps.DepsProvider,
-    NoteListFeatureDeps.DepsProvider {
+    NoteListFeatureDeps.DepsProvider,
+    AddNoteFeatureDeps.DepsProvider {
 
     private val component by lazyFast {
         val provider = application as AppActivityDeps.DepsProvider
@@ -61,4 +64,6 @@ class AppActivity :
     override fun provideSplashFeatureDeps(): SplashFeatureDeps = component
 
     override fun provideNoteListFeatureDeps(): NoteListFeatureDeps = component
+
+    override fun provideAddNoteFeatureDeps(): AddNoteFeatureDeps = component
 }

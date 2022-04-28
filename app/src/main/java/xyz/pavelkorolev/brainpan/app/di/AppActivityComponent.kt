@@ -2,6 +2,7 @@ package xyz.pavelkorolev.brainpan.app.di
 
 import com.github.terrakok.cicerone.NavigatorHolder
 import dagger.Component
+import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureModule
 import xyz.pavelkorolev.brainpan.app.AppActivityDeps
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.di.NoteListFeatureModule
@@ -20,7 +21,8 @@ import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureModule
 )
 internal interface AppActivityComponent :
     SplashFeatureDeps,
-    NoteListFeatureDeps {
+    NoteListFeatureDeps,
+    AddNoteFeatureDeps {
 
     val navigatorHolder: NavigatorHolder
     val splashFeatureApi: SplashFeatureApi

@@ -2,6 +2,7 @@
 
 include(":app")
 include(":core:compose")
+include(":core:ui")
 include(":core:utils")
 include(":core:viewmodel")
 include(":feature:add-note:api")

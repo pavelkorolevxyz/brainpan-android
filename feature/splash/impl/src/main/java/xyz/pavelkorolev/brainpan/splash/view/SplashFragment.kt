@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.View
 import androidx.fragment.app.Fragment
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
+import xyz.pavelkorolev.brainpan.core.ui.BaseFragment
 import xyz.pavelkorolev.brainpan.splash.di.DaggerSplashFeatureComponent
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureComponent
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureDeps
@@ -14,7 +15,7 @@ import xyz.pavelkorolev.brainpan.splash.impl.R
 /**
  * Splash Screen UI
  */
-class SplashFragment : Fragment(R.layout.splash_fragment) {
+class SplashFragment : BaseFragment(R.layout.splash_fragment) {
 
     private val component: SplashFeatureComponent by lazyFast {
         val provider = activity as SplashFeatureDeps.DepsProvider

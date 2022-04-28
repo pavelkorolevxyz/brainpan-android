@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.ui)
     implementation(projects.core.utils)
     implementation(projects.feature.addNote.api)
     implementation(projects.feature.addNote.impl)
