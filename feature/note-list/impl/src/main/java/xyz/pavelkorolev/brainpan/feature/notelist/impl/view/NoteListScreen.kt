@@ -3,7 +3,6 @@ package xyz.pavelkorolev.brainpan.feature.notelist.impl.view
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.FloatingActionButton
@@ -33,7 +32,7 @@ import xyz.pavelkorolev.brainpan.core.compose.theme.AppTheme
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCell
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @Composable
 fun NoteListScreen(
@@ -99,10 +98,11 @@ private fun NoteListScreenContent(
         }
         val notes = state.notes ?: return@Scaffold
         LazyColumn(contentPadding = contentPadding, state = lazyListState) {
-            var prevDate: LocalDateTime? = null
+            var prevDate: LocalDate? = null
             for (note in notes) {
-                if (prevDate != note.dateTime) {
-                    prevDate = note.dateTime
+                val noteDate = note.dateTime.toLocalDate()
+                if (prevDate != noteDate) {
+                    prevDate = noteDate
                     item {
                         DateTimeCell(dateTime = note.dateTime)
                     }
@@ -113,12 +113,6 @@ private fun NoteListScreenContent(
                         note = note,
                     )
                 }
-            }
-            items(notes) { note ->
-                NoteCell(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    note = note,
-                )
             }
         }
     }

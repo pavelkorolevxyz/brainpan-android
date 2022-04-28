@@ -24,7 +24,9 @@ fun DateTimeCell(dateTime: LocalDateTime) {
             .padding(16.dp)
             .padding(top = 16.dp)
             .alpha(0.3f),
-        text = dateTime.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)).uppercase(),
+        text = dateTime.format(
+            DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL),
+        ).uppercase(),
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         textAlign = TextAlign.Center,

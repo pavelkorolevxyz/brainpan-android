@@ -2,6 +2,8 @@
 
 include(":app")
 include(":core:compose")
+include(":core:data")
+include(":core:model")
 include(":core:ui")
 include(":core:utils")
 include(":core:viewmodel")

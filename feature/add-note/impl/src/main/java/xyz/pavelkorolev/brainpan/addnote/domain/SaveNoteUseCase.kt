@@ -1,14 +1,14 @@
-package xyz.pavelkorolev.brainpan.feature.notelist.impl.domain
+package xyz.pavelkorolev.brainpan.addnote.domain
 
 import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
 import xyz.pavelkorolev.brainpan.core.model.Note
 import javax.inject.Inject
 
-class LoadNotesUseCase @Inject constructor(
+class SaveNoteUseCase @Inject constructor(
     private val repository: NoteRepository,
 ) {
 
-    suspend operator fun invoke(): List<Note> {
-        return repository.getNotes()
+    suspend operator fun invoke(note: Note) {
+        return repository.createNote(note)
     }
 }

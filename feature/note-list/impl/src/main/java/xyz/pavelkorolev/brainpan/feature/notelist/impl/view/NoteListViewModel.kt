@@ -6,9 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.LoadNotesUseCase
-import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.models.Note
 import javax.inject.Inject
 
 data class NoteListViewState(
@@ -30,7 +30,7 @@ class NoteListViewModel @Inject constructor(
 
     private fun loadNotes() {
         viewModelScope.launch {
-            val notes = loadNotesUseCase()
+            val notes = loadNotesUseCase().reversed()
             viewState = viewState.copy(notes = notes, isLoading = false)
         }
     }

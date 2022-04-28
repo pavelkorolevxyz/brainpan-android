@@ -1,8 +1,9 @@
-package xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.models
+package xyz.pavelkorolev.brainpan.core.model
 
 import java.time.LocalDateTime
 
 data class Note(
     val text: String,
     val dateTime: LocalDateTime,
+    val id: Long? = null,
 )

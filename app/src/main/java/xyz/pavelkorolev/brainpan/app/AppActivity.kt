@@ -2,12 +2,12 @@ package xyz.pavelkorolev.brainpan.app
 
 import android.os.Bundle
 import androidx.core.view.WindowCompat
-import androidx.fragment.app.FragmentActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.app.di.DaggerAppActivityComponent
+import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseActivity
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
@@ -18,6 +18,7 @@ interface AppActivityDeps {
 
     val navigatorHolder: NavigatorHolder
     val router: Router
+    val noteRepository: NoteRepository
 
     interface DepsProvider {
         fun provideAppActivityDeps(): AppActivityDeps
@@ -43,9 +44,9 @@ class AppActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState != null) return
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        if (savedInstanceState != null) return
         splashFeatureApi.setRootSplash()
     }
 

@@ -1,16 +1,23 @@
 package xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.pavelkorolev.brainpan.core.compose.theme.AppTheme
-import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.models.Note
+import xyz.pavelkorolev.brainpan.core.compose.theme.BrainpanColor
+import xyz.pavelkorolev.brainpan.core.model.Note
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 @Composable
 fun NoteCell(
@@ -18,18 +25,28 @@ fun NoteCell(
     note: Note,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(bottom = 8.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(color = BrainpanColor.Masala.copy(alpha = 0.05f))
+            .clickable {
+                // TODO open edit screen
+            }
+            .padding(16.dp),
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = note.text,
             fontSize = 16.sp,
         )
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(0.3f),
-            text = note.dateTime.toString(),
+            text = note.dateTime.format(
+                DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT),
+            ),
             fontSize = 12.sp,
         )
     }
