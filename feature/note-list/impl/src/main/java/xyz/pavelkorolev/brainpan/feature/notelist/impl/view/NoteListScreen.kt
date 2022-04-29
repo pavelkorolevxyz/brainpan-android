@@ -28,6 +28,7 @@ import com.google.accompanist.insets.ui.TopAppBar
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 import xyz.pavelkorolev.brainpan.core.compose.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.EmptyView
 import xyz.pavelkorolev.brainpan.core.compose.theme.AppTheme
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
@@ -97,6 +98,10 @@ private fun NoteListScreenContent(
             return@Scaffold
         }
         val notes = state.notes ?: return@Scaffold
+        if (notes.isEmpty()) {
+            EmptyView(modifier = Modifier.padding(contentPadding))
+            return@Scaffold
+        }
         LazyColumn(contentPadding = contentPadding, state = lazyListState) {
             var prevDate: LocalDate? = null
             for (note in notes) {
