@@ -6,9 +6,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.w3c.dom.Text
 import xyz.pavelkorolev.brainpan.core.compose.AppScreen
 
+/**
+ * TODO not used anywhere
+ */
 @Composable
 fun WorkInProgressScreen() {
     AppScreen {

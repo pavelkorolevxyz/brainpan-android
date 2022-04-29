@@ -1,7 +1,7 @@
 package xyz.pavelkorolev.brainpan.feature.addnote.api
 
 /**
- * Splash feature external API
+ * Add note feature external API
  */
 interface AddNoteFeatureApi {
 

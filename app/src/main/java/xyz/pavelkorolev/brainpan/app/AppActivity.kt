@@ -13,6 +13,7 @@ import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseActivity
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
 import xyz.pavelkorolev.brainpan.feature.splash.api.SplashFeatureApi
+import xyz.pavelkorolev.brainpan.settings.di.SettingsFeatureDeps
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureDeps
 
 interface AppActivityDeps {
@@ -32,9 +33,10 @@ interface AppActivityDeps {
  */
 class AppActivity :
     BaseActivity(),
-    SplashFeatureDeps.DepsProvider,
+    AddNoteFeatureDeps.DepsProvider,
     NoteListFeatureDeps.DepsProvider,
-    AddNoteFeatureDeps.DepsProvider {
+    SettingsFeatureDeps.DepsProvider,
+    SplashFeatureDeps.DepsProvider {
 
     private val component by lazyFast {
         val provider = application as AppActivityDeps.DepsProvider
@@ -69,4 +71,6 @@ class AppActivity :
     override fun provideNoteListFeatureDeps(): NoteListFeatureDeps = component
 
     override fun provideAddNoteFeatureDeps(): AddNoteFeatureDeps = component
+
+    override fun provideSettingsFeatureDeps(): SettingsFeatureDeps = component
 }

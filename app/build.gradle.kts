@@ -60,6 +60,8 @@ dependencies {
     implementation(projects.core.utils)
     implementation(projects.feature.addNote.api)
     implementation(projects.feature.addNote.impl)
+    implementation(projects.feature.settings.api)
+    implementation(projects.feature.settings.impl)
     implementation(projects.feature.splash.api)
     implementation(projects.feature.splash.impl)
     implementation(projects.feature.noteList.api)

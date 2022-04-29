@@ -8,6 +8,8 @@ import xyz.pavelkorolev.brainpan.app.AppActivityDeps
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.di.NoteListFeatureModule
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
 import xyz.pavelkorolev.brainpan.feature.splash.api.SplashFeatureApi
+import xyz.pavelkorolev.brainpan.settings.di.SettingsFeatureDeps
+import xyz.pavelkorolev.brainpan.settings.di.SettingsFeatureModule
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureDeps
 import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureModule
 
@@ -16,13 +18,15 @@ import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureModule
         SplashFeatureModule::class,
         NoteListFeatureModule::class,
         AddNoteFeatureModule::class,
+        SettingsFeatureModule::class,
     ],
     dependencies = [AppActivityDeps::class],
 )
 internal interface AppActivityComponent :
-    SplashFeatureDeps,
+    AddNoteFeatureDeps,
     NoteListFeatureDeps,
-    AddNoteFeatureDeps {
+    SettingsFeatureDeps,
+    SplashFeatureDeps {
 
     val navigatorHolder: NavigatorHolder
     val splashFeatureApi: SplashFeatureApi

@@ -12,6 +12,7 @@ import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.LoadNotesUseCase
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.NoteListUpdateUseCase
+import xyz.pavelkorolev.brainpan.feature.settings.api.SettingsFeatureApi
 import javax.inject.Inject
 
 data class NoteListViewState(
@@ -21,6 +22,7 @@ data class NoteListViewState(
 
 class NoteListViewModel @Inject constructor(
     private val addNoteFeatureApi: AddNoteFeatureApi,
+    private val settingsFeatureApi: SettingsFeatureApi,
     private val loadNotesUseCase: LoadNotesUseCase,
     private val noteListUpdateUseCase: NoteListUpdateUseCase,
 ) : ViewModel() {
@@ -57,5 +59,9 @@ class NoteListViewModel @Inject constructor(
 
     fun onAddClick() {
         addNoteFeatureApi.navigateAddNote()
+    }
+
+    fun onSettingsClick() {
+        settingsFeatureApi.navigateSettings()
     }
 }

@@ -4,12 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.rememberCoroutineScope
@@ -40,6 +38,7 @@ fun NoteListScreen(
     state: NoteListViewState,
     onHeaderClick: () -> Unit,
     onAddClick: () -> Unit,
+    onSettingsClick: () -> Unit,
 ) {
     AppScreen {
         val systemUiController = rememberSystemUiController()
@@ -52,6 +51,7 @@ fun NoteListScreen(
             state = state,
             onHeaderClick = onHeaderClick,
             onAddClick = onAddClick,
+            onSettingsClick = onSettingsClick,
         )
     }
 }
@@ -61,18 +61,20 @@ private fun NoteListScreenContent(
     state: NoteListViewState,
     onHeaderClick: () -> Unit,
     onAddClick: () -> Unit,
+    onSettingsClick: () -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
             NoteListTopAppBar(
-                onClick = {
+                onBackClick = {
                     onHeaderClick()
                     coroutineScope.launch {
                         lazyListState.animateScrollToItem(0)
                     }
                 },
+                onSettingsClick = onSettingsClick,
             )
         },
         bottomBar = {
@@ -125,7 +127,8 @@ private fun NoteListScreenContent(
 
 @Composable
 private fun NoteListTopAppBar(
-    onClick: () -> Unit,
+    onSettingsClick: () -> Unit,
+    onBackClick: () -> Unit,
 ) {
     TopAppBar(
         title = {
@@ -135,7 +138,12 @@ private fun NoteListTopAppBar(
             LocalWindowInsets.current.statusBars,
             applyBottom = false,
         ),
-        modifier = Modifier.clickable(onClick = onClick),
+        actions = {
+            IconButton(onClick = onSettingsClick) {
+                Icon(Icons.Filled.Settings, contentDescription = null)
+            }
+        },
+        modifier = Modifier.clickable(onClick = onBackClick),
     )
 }
 
@@ -159,6 +167,7 @@ private fun NoteListScreenPreview() {
             state = NoteListViewState(),
             onHeaderClick = {},
             onAddClick = {},
+            onSettingsClick = {},
         )
     }
 }

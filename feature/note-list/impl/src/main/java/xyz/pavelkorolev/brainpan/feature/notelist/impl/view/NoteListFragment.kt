@@ -12,10 +12,12 @@ import xyz.pavelkorolev.brainpan.core.data.observer.AddNoteEventObserver
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseFragment
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
+import xyz.pavelkorolev.brainpan.feature.settings.api.SettingsFeatureApi
 
 interface NoteListFeatureDeps {
 
     val addNoteFeatureApi: AddNoteFeatureApi
+    val settingsFeatureApi: SettingsFeatureApi
     val noteRepository: NoteRepository
     val addNoteEventObserver: AddNoteEventObserver
 
@@ -42,6 +44,7 @@ class NoteListFragment : BaseFragment() {
             state = viewModel.viewState,
             onHeaderClick = { viewModel.onHeaderClick() },
             onAddClick = { viewModel.onAddClick() },
+            onSettingsClick = { viewModel.onSettingsClick() },
         )
     }
 
