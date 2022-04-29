@@ -8,6 +8,7 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.app.di.DaggerAppActivityComponent
 import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
+import xyz.pavelkorolev.brainpan.core.data.observer.AddNoteEventObserver
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseActivity
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
@@ -19,6 +20,7 @@ interface AppActivityDeps {
     val navigatorHolder: NavigatorHolder
     val router: Router
     val noteRepository: NoteRepository
+    val addNoteEventObserver: AddNoteEventObserver
 
     interface DepsProvider {
         fun provideAppActivityDeps(): AppActivityDeps

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("convention.android.library")
     id("convention.detekt")
@@ -13,10 +15,17 @@ android {
     }
 }
 
+tasks.withType(KotlinCompile::class).all {
+    kotlinOptions.freeCompilerArgs += listOf(
+        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+    )
+}
+
 dependencies {
     implementation(projects.core.compose)
     implementation(projects.core.data)
     implementation(projects.core.model)
+    implementation(projects.core.observer)
     implementation(projects.core.ui)
     implementation(projects.core.utils)
     implementation(projects.core.viewmodel)

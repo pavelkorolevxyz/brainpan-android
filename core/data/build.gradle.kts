@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     implementation(projects.core.model)
+    implementation(projects.core.observer)
 
     implementation(libs.inject)
     implementation(libs.kotlinx.coroutines.core)

@@ -5,10 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.LoadNotesUseCase
+import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.NoteListUpdateUseCase
 import javax.inject.Inject
 
 data class NoteListViewState(
@@ -19,6 +22,7 @@ data class NoteListViewState(
 class NoteListViewModel @Inject constructor(
     private val addNoteFeatureApi: AddNoteFeatureApi,
     private val loadNotesUseCase: LoadNotesUseCase,
+    private val noteListUpdateUseCase: NoteListUpdateUseCase,
 ) : ViewModel() {
 
     var viewState by mutableStateOf(NoteListViewState())
@@ -26,12 +30,23 @@ class NoteListViewModel @Inject constructor(
 
     init {
         loadNotes()
+        subscribeForUpdates()
     }
 
     private fun loadNotes() {
         viewModelScope.launch {
             val notes = loadNotesUseCase().reversed()
             viewState = viewState.copy(notes = notes, isLoading = false)
+        }
+    }
+
+    private fun subscribeForUpdates() {
+        viewModelScope.launch {
+            noteListUpdateUseCase()
+                .onEach {
+                    loadNotes()
+                }
+                .collect()
         }
     }
 

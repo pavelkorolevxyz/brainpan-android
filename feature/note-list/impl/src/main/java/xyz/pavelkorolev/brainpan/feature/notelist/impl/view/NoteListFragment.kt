@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import xyz.pavelkorolev.brainpan.core.compose.fragmentComposeView
 import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
+import xyz.pavelkorolev.brainpan.core.data.observer.AddNoteEventObserver
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseFragment
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
@@ -16,6 +17,7 @@ interface NoteListFeatureDeps {
 
     val addNoteFeatureApi: AddNoteFeatureApi
     val noteRepository: NoteRepository
+    val addNoteEventObserver: AddNoteEventObserver
 
     interface DepsProvider {
         fun provideNoteListFeatureDeps(): NoteListFeatureDeps

@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import xyz.pavelkorolev.brainpan.core.data.api.DatabaseProvider
 import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
+import xyz.pavelkorolev.brainpan.core.data.observer.AddNoteEventObserver
 import xyz.pavelkorolev.brainpan.core.data.repository.DatabaseNoteRepository
 import javax.inject.Scope
 
@@ -25,6 +26,10 @@ class DatabaseModule {
     fun provideDatabaseProvider(
         application: Application,
     ): DatabaseProvider = DatabaseProvider(application)
+
+    @DatabaseScope
+    @Provides
+    fun provideAddNoteEventObserver(): AddNoteEventObserver = AddNoteEventObserver()
 }
 
 @Module
