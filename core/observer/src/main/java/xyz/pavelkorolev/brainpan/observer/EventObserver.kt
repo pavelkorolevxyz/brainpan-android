@@ -8,4 +8,3 @@ interface EventObserver<T> {
 
     suspend fun submit(value: T)
 }
-
