@@ -16,4 +16,3 @@ data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,
 )
-

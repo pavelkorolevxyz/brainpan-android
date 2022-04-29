@@ -8,16 +8,16 @@ plugins {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.19.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.20.0")
 }
 
 val configFile = files("$rootDir/config/detekt/config.yml")
 val baselineFile = file("config/detekt/baseline.xml")
 val mergedReportFile = file("${rootProject.buildDir}/reports/detekt/report.xml")
-val xmlReportFile = file("$buildDir/reports/detekt/report.xml")
+val xmlReportFile = file("$buildDir/reports/detekt/detekt.xml")
 
 detekt {
-    ignoreFailures = false
+    ignoreFailures = true
 
     parallel = true
 
