@@ -27,8 +27,11 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
+      - name: Compile
+        run: ./gradlew :app:compileReleaseKotlin
+
       - name: Android Lint
-        run: ./gradlew lintRelease
+        run: ./gradlew :app:lintRelease
 
       - name: detekt
         run: ./gradlew detekt
@@ -49,4 +52,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: lint-report
-          path: "**/build/reports/*.html"
+          path: "app-*/build/reports/*.html"
+
+      - name: Upload Detekt report
+        uses: actions/upload-artifact@v2
+        with:
+          name: detekt-report
+          path: "build/reports/detekt/*.xml"
