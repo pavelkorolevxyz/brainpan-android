@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.asFlow
  */
 open class PublishEventObserver<T> : EventObserver<T> {
 
-    private val updatesBroadcast: BroadcastChannel<T> =
-        BroadcastChannel(1)
+    private val updatesBroadcast: BroadcastChannel<T> = BroadcastChannel(1)
 
     /**
      * Returns a flow of events.

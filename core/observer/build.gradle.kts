@@ -7,8 +7,8 @@ plugins {
 
 tasks.withType(KotlinCompile::class).all {
     kotlinOptions.freeCompilerArgs += listOf(
-        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xopt-in=kotlinx.coroutines.FlowPreview",
     )
 }
 

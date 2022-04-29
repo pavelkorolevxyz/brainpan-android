@@ -15,8 +15,8 @@ dependencies {
 }
 
 gradlePlugin {
-    plugins.register("android.app.signing") {
-        id = "android.app.signing"
+    plugins.register("convention.android.app.signing") {
+        id = "convention.android.app.signing"
         implementationClass = "AndroidAppSigningPlugin"
     }
 }

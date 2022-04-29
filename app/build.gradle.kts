@@ -1,5 +1,6 @@
 plugins {
     id("convention.android.app")
+    id("convention.android.app.signing")
     id("convention.detekt")
     id("kotlin-kapt")
 }
@@ -11,6 +12,22 @@ android {
 
         versionCode = 1
         versionName = "0.1.0"
+    }
+
+    signingConfigs {
+        getByName("debug")
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+
+            val signingConfig = loadSigningConfig(keystorePropertiesFile)
+                ?: loadSigningConfigFromEnvironment()
+                ?: return@create
+
+            storeFile = keystorePropertiesFile.parentFile.resolve(signingConfig.keystoreFile)
+            storePassword = signingConfig.password
+            keyAlias = signingConfig.alias
+            keyPassword = signingConfig.aliasPassword
+        }
     }
 
     buildTypes {
@@ -29,6 +46,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

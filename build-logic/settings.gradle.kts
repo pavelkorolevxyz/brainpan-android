@@ -12,3 +12,4 @@ dependencyResolutionManagement {
 
 include("android")
 include("checks")
+include("signing")

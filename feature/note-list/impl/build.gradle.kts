@@ -17,7 +17,7 @@ android {
 
 tasks.withType(KotlinCompile::class).all {
     kotlinOptions.freeCompilerArgs += listOf(
-        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+        "-Xopt-in=kotlinx.coroutines.InternalCoroutinesApi",
     )
 }
 
