@@ -4,6 +4,12 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
+android {
+    defaultConfig {
+        consumerProguardFile("consumer-rules.pro")
+    }
+}
+
 dependencies {
     implementation(projects.core.model)
 
