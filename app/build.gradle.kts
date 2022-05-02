@@ -12,6 +12,8 @@ android {
 
         versionCode = 1
         versionName = "0.1.0"
+
+        resourceConfigurations += setOf("en")
     }
 
     signingConfigs {
