@@ -1,4 +1,4 @@
-package xyz.pavelkorolev.brainpan.feature.addnote.view
+package xyz.pavelkorolev.brainpan.core.compose.composables
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -6,11 +6,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
+import androidx.compose.ui.res.stringResource
+import xyz.pavelkorolev.brainpan.core.compose.R
 
-/**
- * TODO not used anywhere
- */
 @Composable
 fun WorkInProgressScreen() {
     AppScreen {
@@ -19,7 +17,7 @@ fun WorkInProgressScreen() {
             modifier = Modifier.fillMaxSize(),
         ) {
             Text(
-                text = "Work in progress",
+                text = stringResource(id = R.string.title_work_in_progress),
             )
         }
     }
