@@ -121,6 +121,9 @@ private fun NoteListScreenContent(
                     )
                 }
             }
+            item {
+                Spacer(Modifier.height(80.dp))
+            }
         }
     }
 }
