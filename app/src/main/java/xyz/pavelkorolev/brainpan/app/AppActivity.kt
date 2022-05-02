@@ -5,16 +5,16 @@ import androidx.core.view.WindowCompat
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.app.di.DaggerAppActivityComponent
 import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
 import xyz.pavelkorolev.brainpan.core.data.observer.AddNoteEventObserver
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseActivity
+import xyz.pavelkorolev.brainpan.feature.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.NoteListFeatureDeps
+import xyz.pavelkorolev.brainpan.feature.settings.di.SettingsFeatureDeps
 import xyz.pavelkorolev.brainpan.feature.splash.api.SplashFeatureApi
-import xyz.pavelkorolev.brainpan.settings.di.SettingsFeatureDeps
-import xyz.pavelkorolev.brainpan.splash.di.SplashFeatureDeps
+import xyz.pavelkorolev.brainpan.feature.splash.di.SplashFeatureDeps
 
 interface AppActivityDeps {
 
