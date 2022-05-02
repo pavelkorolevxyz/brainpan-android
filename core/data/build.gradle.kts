@@ -4,6 +4,20 @@ plugins {
     id("kotlin-kapt")
 }
 
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
+    }
+}
+
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.observer)
