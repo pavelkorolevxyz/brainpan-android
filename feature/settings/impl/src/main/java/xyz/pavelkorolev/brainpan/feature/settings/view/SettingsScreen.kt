@@ -19,6 +19,7 @@ import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 import xyz.pavelkorolev.brainpan.feature.settings.impl.R
+import xyz.pavelkorolev.brainpan.core.resources.R as ResourcesR
 
 @Composable
 fun SettingsScreen(
@@ -26,47 +27,39 @@ fun SettingsScreen(
     onExportClick: () -> Unit,
 ) {
     AppScreen {
-        AppScreenContent(
-            onBackClick = onBackClick,
-            onExportClick = onExportClick,
-        )
-    }
-}
-
-@Composable
-fun AppScreenContent(
-    onBackClick: () -> Unit,
-    onExportClick: () -> Unit,
-) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.title_settings))
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null) // TODO
-                    }
-                },
-                contentPadding = rememberInsetsPaddingValues(
-                    LocalWindowInsets.current.statusBars,
-                    applyBottom = false,
-                ),
-            )
-        },
-    ) { contentPadding ->
-        Column(modifier = Modifier.padding(contentPadding)) {
-            SettingsRow(
-                text = stringResource(id = R.string.action_export_data),
-                modifier = Modifier.clickable(onClick = onExportClick),
-            )
-            Spacer(
-                modifier = Modifier
-                    .height(1.dp)
-                    .fillMaxWidth()
-                    .background(color = Color.Black.copy(alpha = 0.1f)),
-            )
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(id = R.string.title_settings))
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBackClick) {
+                            Icon(
+                                Icons.Filled.ArrowBack,
+                                contentDescription = stringResource(id = ResourcesR.string.action_back),
+                            )
+                        }
+                    },
+                    contentPadding = rememberInsetsPaddingValues(
+                        LocalWindowInsets.current.statusBars,
+                        applyBottom = false,
+                    ),
+                )
+            },
+        ) { contentPadding ->
+            Column(modifier = Modifier.padding(contentPadding)) {
+                SettingsRow(
+                    text = stringResource(id = R.string.action_export_data),
+                    modifier = Modifier.clickable(onClick = onExportClick),
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(color = Color.Black.copy(alpha = 0.1f)),
+                )
+            }
         }
     }
 }

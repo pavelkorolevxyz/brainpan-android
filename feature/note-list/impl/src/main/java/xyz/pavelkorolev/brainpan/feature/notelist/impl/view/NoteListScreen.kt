@@ -35,78 +35,63 @@ fun NoteListScreen(
     onSettingsClick: () -> Unit,
 ) {
     AppScreen {
-        NoteListScreenContent(
-            state = state,
-            onHeaderClick = onHeaderClick,
-            onAddClick = onAddClick,
-            onSettingsClick = onSettingsClick,
-        )
-    }
-}
-
-@Composable
-private fun NoteListScreenContent(
-    state: NoteListViewState,
-    onHeaderClick: () -> Unit,
-    onAddClick: () -> Unit,
-    onSettingsClick: () -> Unit,
-) {
-    val lazyListState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
-    Scaffold(
-        topBar = {
-            NoteListTopAppBar(
-                onBackClick = {
-                    onHeaderClick()
-                    coroutineScope.launch {
-                        lazyListState.animateScrollToItem(0)
-                    }
-                },
-                onSettingsClick = onSettingsClick,
-            )
-        },
-        bottomBar = {
-            Spacer(modifier = Modifier.navigationBarsHeight())
-        },
-        floatingActionButton = {
-            NoteListFloatingActionButton(onClick = onAddClick)
-        },
-    ) { contentPadding ->
-        if (state.isLoading) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .padding(contentPadding)
-                    .fillMaxSize(),
-            ) {
-                CircularProgressIndicator()
+        val lazyListState = rememberLazyListState()
+        val coroutineScope = rememberCoroutineScope()
+        Scaffold(
+            topBar = {
+                NoteListTopAppBar(
+                    onBackClick = {
+                        onHeaderClick()
+                        coroutineScope.launch {
+                            lazyListState.animateScrollToItem(0)
+                        }
+                    },
+                    onSettingsClick = onSettingsClick,
+                )
+            },
+            bottomBar = {
+                Spacer(modifier = Modifier.navigationBarsHeight())
+            },
+            floatingActionButton = {
+                NoteListFloatingActionButton(onClick = onAddClick)
+            },
+        ) { contentPadding ->
+            if (state.isLoading) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .padding(contentPadding)
+                        .fillMaxSize(),
+                ) {
+                    CircularProgressIndicator()
+                }
+                return@Scaffold
             }
-            return@Scaffold
-        }
-        val notes = state.notes ?: return@Scaffold
-        if (notes.isEmpty()) {
-            EmptyView(modifier = Modifier.padding(contentPadding))
-            return@Scaffold
-        }
-        LazyColumn(contentPadding = contentPadding, state = lazyListState) {
-            var prevDate: LocalDate? = null
-            for (note in notes) {
-                val noteDate = note.dateTime.toLocalDate()
-                if (prevDate != noteDate) {
-                    prevDate = noteDate
+            val notes = state.notes ?: return@Scaffold
+            if (notes.isEmpty()) {
+                EmptyView(modifier = Modifier.padding(contentPadding))
+                return@Scaffold
+            }
+            LazyColumn(contentPadding = contentPadding, state = lazyListState) {
+                var prevDate: LocalDate? = null
+                for (note in notes) {
+                    val noteDate = note.dateTime.toLocalDate()
+                    if (prevDate != noteDate) {
+                        prevDate = noteDate
+                        item {
+                            DateTimeCell(dateTime = note.dateTime)
+                        }
+                    }
                     item {
-                        DateTimeCell(dateTime = note.dateTime)
+                        NoteCell(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            note = note,
+                        )
                     }
                 }
                 item {
-                    NoteCell(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        note = note,
-                    )
+                    Spacer(Modifier.height(80.dp))
                 }
-            }
-            item {
-                Spacer(Modifier.height(80.dp))
             }
         }
     }
