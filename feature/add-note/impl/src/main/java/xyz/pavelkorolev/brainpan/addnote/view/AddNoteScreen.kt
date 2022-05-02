@@ -15,7 +15,7 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.addnote.impl.R
-import xyz.pavelkorolev.brainpan.core.compose.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 
 @Composable
 fun AddNoteScreen(

@@ -6,7 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import xyz.pavelkorolev.brainpan.core.compose.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 
 /**
  * TODO not used anywhere

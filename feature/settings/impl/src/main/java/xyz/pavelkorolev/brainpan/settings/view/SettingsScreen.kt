@@ -17,7 +17,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
-import xyz.pavelkorolev.brainpan.core.compose.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 import xyz.pavelkorolev.brainpan.feature.settings.impl.R
 
 @Composable

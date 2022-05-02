@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import xyz.pavelkorolev.brainpan.core.compose.fragmentComposeView
+import xyz.pavelkorolev.brainpan.core.compose.fragmentInsetsComposeView
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseFragment
 import xyz.pavelkorolev.brainpan.settings.di.DaggerSettingsComponent
@@ -31,7 +31,7 @@ class SettingsFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = fragmentComposeView {
+    ): View? = fragmentInsetsComposeView {
         SettingsScreen(
             onBackClick = viewModel::onBackClick,
             onExportClick = viewModel::onExportClick,

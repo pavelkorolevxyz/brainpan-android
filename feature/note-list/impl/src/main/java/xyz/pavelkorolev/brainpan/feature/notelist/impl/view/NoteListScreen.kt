@@ -20,8 +20,8 @@ import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import kotlinx.coroutines.launch
-import xyz.pavelkorolev.brainpan.core.compose.AppScreen
-import xyz.pavelkorolev.brainpan.core.compose.EmptyView
+import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.composables.EmptyView
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCell

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import xyz.pavelkorolev.brainpan.addnote.di.AddNoteComponent
 import xyz.pavelkorolev.brainpan.addnote.di.AddNoteFeatureDeps
 import xyz.pavelkorolev.brainpan.addnote.di.DaggerAddNoteComponent
-import xyz.pavelkorolev.brainpan.core.compose.fragmentComposeView
+import xyz.pavelkorolev.brainpan.core.compose.fragmentInsetsComposeView
 import xyz.pavelkorolev.brainpan.core.extensions.lazyFast
 import xyz.pavelkorolev.brainpan.core.ui.BaseFragment
 
@@ -27,7 +27,7 @@ class AddNoteFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? = fragmentComposeView {
+    ): View? = fragmentInsetsComposeView {
         AddNoteScreen(
             noteText = viewModel.text,
             onBackClick = {

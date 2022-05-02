@@ -1,4 +1,4 @@
-package xyz.pavelkorolev.brainpan.core.compose
+package xyz.pavelkorolev.brainpan.core.compose.composables
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
