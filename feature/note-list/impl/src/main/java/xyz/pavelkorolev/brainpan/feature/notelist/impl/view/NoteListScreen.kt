@@ -9,25 +9,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 import xyz.pavelkorolev.brainpan.core.compose.AppScreen
 import xyz.pavelkorolev.brainpan.core.compose.EmptyView
-import xyz.pavelkorolev.brainpan.core.compose.theme.AppTheme
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCell
@@ -41,12 +35,6 @@ fun NoteListScreen(
     onSettingsClick: () -> Unit,
 ) {
     AppScreen {
-        val systemUiController = rememberSystemUiController()
-        SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = Color.Transparent,
-            )
-        }
         NoteListScreenContent(
             state = state,
             onHeaderClick = onHeaderClick,
@@ -78,11 +66,7 @@ private fun NoteListScreenContent(
             )
         },
         bottomBar = {
-            Spacer(
-                Modifier
-                    .navigationBarsHeight()
-                    .fillMaxWidth(),
-            )
+            Spacer(modifier = Modifier.navigationBarsHeight())
         },
         floatingActionButton = {
             NoteListFloatingActionButton(onClick = onAddClick)
@@ -158,19 +142,6 @@ private fun NoteListFloatingActionButton(onClick: () -> Unit) {
         Icon(
             imageVector = Icons.Default.Add,
             contentDescription = stringResource(id = R.string.add_note),
-        )
-    }
-}
-
-@Preview(device = Devices.PIXEL)
-@Composable
-private fun NoteListScreenPreview() {
-    AppTheme {
-        NoteListScreen(
-            state = NoteListViewState(),
-            onHeaderClick = {},
-            onAddClick = {},
-            onSettingsClick = {},
         )
     }
 }

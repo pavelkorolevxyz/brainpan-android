@@ -2,7 +2,7 @@
 kotlin = "1.6.10"
 androidx-compose = "1.1.1"
 androidx-navigation = "2.4.2"
-accompanist = "0.23.0"
+accompanist = "0.23.1"
 detekt = "1.20.0"
 dagger = "2.41"
 kotlin-coroutines = "1.4.1"

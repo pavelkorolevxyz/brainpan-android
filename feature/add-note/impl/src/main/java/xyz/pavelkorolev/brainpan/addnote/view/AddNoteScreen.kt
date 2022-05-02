@@ -6,9 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
@@ -16,7 +14,6 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import xyz.pavelkorolev.brainpan.addnote.impl.R
 import xyz.pavelkorolev.brainpan.core.compose.AppScreen
 
@@ -28,12 +25,6 @@ fun AddNoteScreen(
     onSaveClick: () -> Unit,
 ) {
     AppScreen {
-        val systemUiController = rememberSystemUiController()
-        SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = Color.Transparent,
-            )
-        }
         AppScreenContent(
             noteText = noteText,
             onBackClick = onBackClick,
