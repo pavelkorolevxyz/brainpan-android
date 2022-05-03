@@ -59,6 +59,20 @@ fun SettingsScreen(
                         .fillMaxWidth()
                         .background(color = Color.Black.copy(alpha = 0.1f)),
                 )
+                SettingsRow(
+                    text = stringResource(id = R.string.action_crash),
+                    modifier = Modifier.clickable(
+                        onClick = {
+                            throw RuntimeException("Generated crash")
+                        },
+                    ),
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(color = Color.Black.copy(alpha = 0.1f)),
+                )
             }
         }
     }

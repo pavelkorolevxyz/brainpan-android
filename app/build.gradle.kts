@@ -3,6 +3,8 @@ plugins {
     id("convention.android.app.signing")
     id("convention.detekt")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -10,8 +12,8 @@ android {
     defaultConfig {
         applicationId = "xyz.pavelkorolev.brainpan"
 
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
 
         resourceConfigurations += setOf("en")
     }
@@ -48,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.analytics)
+    implementation(projects.core.crash)
     implementation(projects.core.data)
     implementation(projects.core.model)
     implementation(projects.core.observer)

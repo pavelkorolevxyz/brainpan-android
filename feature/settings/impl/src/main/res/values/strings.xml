@@ -2,4 +2,5 @@
 <resources>
     <string name="title_settings">Settings</string>
     <string name="action_export_data">Export data as json</string>
+    <string name="action_crash">Generate crash</string>
 </resources>

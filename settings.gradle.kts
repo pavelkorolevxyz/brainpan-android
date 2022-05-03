@@ -1,7 +1,9 @@
 @file:Suppress("UnstableApiUsage")
 
 include(":app")
+include(":core:analytics")
 include(":core:compose")
+include(":core:crash")
 include(":core:data")
 include(":core:exporter")
 include(":core:model")
