@@ -45,7 +45,7 @@ jobs:
         run: ./gradlew testReleaseUnitTest
 
       - name: Assemble
-        run: ./gradlew assembleRelease
+        run: ./gradlew :app:assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
