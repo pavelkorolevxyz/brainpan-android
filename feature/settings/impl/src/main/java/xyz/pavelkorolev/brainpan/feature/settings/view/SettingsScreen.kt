@@ -13,8 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
@@ -33,6 +31,8 @@ fun SettingsScreen(
                     title = {
                         Text(text = stringResource(id = R.string.title_settings))
                     },
+                    contentPadding = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
+                        .asPaddingValues(),
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
                             Icon(
@@ -41,14 +41,18 @@ fun SettingsScreen(
                             )
                         }
                     },
-                    contentPadding = rememberInsetsPaddingValues(
-                        LocalWindowInsets.current.statusBars,
-                        applyBottom = false,
-                    ),
                 )
             },
         ) { contentPadding ->
-            Column(modifier = Modifier.padding(contentPadding)) {
+            Column(
+                modifier = Modifier
+                    .padding(contentPadding)
+                    .padding(
+                        WindowInsets.systemBars
+                            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                            .asPaddingValues(),
+                    ),
+            ) {
                 SettingsRow(
                     text = stringResource(id = R.string.action_export_data),
                     modifier = Modifier.clickable(onClick = onExportClick),

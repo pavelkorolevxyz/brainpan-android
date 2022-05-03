@@ -7,12 +7,9 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.FrameLayout
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.ViewWindowInsetObserver
 
 /**
  * A huge giant hack to help with https://github.com/chrisbanes/accompanist/issues/155.
@@ -96,12 +93,6 @@ fun Fragment.fragmentInsetsComposeView(
 ): View? {
     if (context == null) return null
     return FragmentInsetsComposeView(context).apply {
-        val windowInsets = ViewWindowInsetObserver(this).start(consumeWindowInsets = false)
-        setContent {
-            CompositionLocalProvider(
-                LocalWindowInsets provides windowInsets,
-                content = content,
-            )
-        }
+        setContent(content)
     }
 }

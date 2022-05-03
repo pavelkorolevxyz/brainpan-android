@@ -1,8 +1,8 @@
 [versions]
-kotlin = "1.6.10"
-androidx-compose = "1.1.1"
+kotlin = "1.6.20"
+androidx-compose = "1.2.0-alpha08"
 androidx-navigation = "2.4.2"
-accompanist = "0.23.1"
+accompanist = "0.24.7-alpha"
 detekt = "1.20.0"
 dagger = "2.41"
 kotlin-coroutines = "1.4.1"
@@ -18,11 +18,11 @@ androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androi
 androidx-compose-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
 androidx-compose-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.4.0" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.5.0-beta01" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version = "1.4.1" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 accompanist-systemUiController = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
+#accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
 accompanist-insetsUi = { module = "com.google.accompanist:accompanist-insets-ui", version.ref = "accompanist" }
 android-desugar = { module = "com.android.tools:desugar_jdk_libs", version = "1.1.5" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }

@@ -14,9 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.navigationBarsHeight
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import kotlinx.coroutines.launch
@@ -50,7 +47,7 @@ fun NoteListScreen(
                 )
             },
             bottomBar = {
-                Spacer(modifier = Modifier.navigationBarsHeight())
+                Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             },
             floatingActionButton = {
                 NoteListFloatingActionButton(onClick = onAddClick)
@@ -60,7 +57,6 @@ fun NoteListScreen(
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .padding(contentPadding)
                         .fillMaxSize(),
                 ) {
                     CircularProgressIndicator()
@@ -69,10 +65,13 @@ fun NoteListScreen(
             }
             val notes = state.notes ?: return@Scaffold
             if (notes.isEmpty()) {
-                EmptyView(modifier = Modifier.padding(contentPadding))
+                EmptyView()
                 return@Scaffold
             }
-            LazyColumn(contentPadding = contentPadding, state = lazyListState) {
+            LazyColumn(
+                contentPadding = WindowInsets.systemBars.asPaddingValues(),
+                state = lazyListState,
+            ) {
                 var prevDate: LocalDate? = null
                 for (note in notes) {
                     val noteDate = note.dateTime.toLocalDate()
@@ -106,10 +105,9 @@ private fun NoteListTopAppBar(
         title = {
             Text(stringResource(id = R.string.app_name))
         },
-        contentPadding = rememberInsetsPaddingValues(
-            LocalWindowInsets.current.statusBars,
-            applyBottom = false,
-        ),
+        contentPadding = WindowInsets.systemBars
+            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+            .asPaddingValues(),
         actions = {
             IconButton(onClick = onSettingsClick) {
                 Icon(Icons.Filled.Settings, contentDescription = null)
@@ -123,6 +121,11 @@ private fun NoteListTopAppBar(
 private fun NoteListFloatingActionButton(onClick: () -> Unit) {
     FloatingActionButton(
         onClick = onClick,
+        modifier = Modifier.windowInsetsPadding(
+            WindowInsets.systemBars.only(
+                WindowInsetsSides.Horizontal,
+            ),
+        ),
     ) {
         Icon(
             imageVector = Icons.Default.Add,

@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import xyz.pavelkorolev.brainpan.core.compose.theme.AppTheme
 
@@ -26,12 +25,10 @@ fun AppScreen(
                 )
             }
         }
-        ProvideWindowInsets {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = backgroundColor,
-                content = content,
-            )
-        }
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = backgroundColor,
+            content = content,
+        )
     }
 }

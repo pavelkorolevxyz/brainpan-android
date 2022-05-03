@@ -15,8 +15,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.rememberInsetsPaddingValues
 import com.google.accompanist.insets.ui.Scaffold
 import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
@@ -40,6 +38,11 @@ fun AddNoteScreen(
             Column(
                 modifier = Modifier
                     .padding(contentPadding)
+                    .padding(
+                        WindowInsets.systemBars
+                            .only(WindowInsetsSides.Horizontal)
+                            .asPaddingValues(),
+                    )
                     .fillMaxSize()
                     .padding(16.dp),
             ) {
@@ -73,6 +76,9 @@ private fun AddNoteTopAppBar(onBackClick: () -> Unit) {
         title = {
             Text(text = stringResource(id = R.string.title_add_note))
         },
+        contentPadding = WindowInsets.systemBars
+            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+            .asPaddingValues(),
         navigationIcon = {
             IconButton(onClick = onBackClick) {
                 Icon(
@@ -81,9 +87,5 @@ private fun AddNoteTopAppBar(onBackClick: () -> Unit) {
                 )
             }
         },
-        contentPadding = rememberInsetsPaddingValues(
-            LocalWindowInsets.current.statusBars,
-            applyBottom = false,
-        ),
     )
 }

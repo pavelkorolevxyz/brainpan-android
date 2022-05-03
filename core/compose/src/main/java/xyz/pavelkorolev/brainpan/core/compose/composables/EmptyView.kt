@@ -17,7 +17,7 @@ import xyz.pavelkorolev.brainpan.core.compose.R
 import xyz.pavelkorolev.brainpan.core.compose.theme.BrainpanColor
 
 @Composable
-fun EmptyView(modifier: Modifier) {
+fun EmptyView(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
