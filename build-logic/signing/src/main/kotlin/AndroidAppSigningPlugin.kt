@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApkSigningConfig
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.io.File
@@ -33,9 +34,9 @@ data class SigningConfig(
     /**
      * Application alias password
      */
-    val aliasPassword: String
+    val aliasPassword: String,
 
-)
+    )
 
 /**
  * Loads [SigningConfig] from keystore.properties file
@@ -55,7 +56,7 @@ fun loadSigningConfig(keystorePropertiesFile: File): SigningConfig? {
         File(keystoreFilePath),
         keystorePassword,
         alias,
-        aliasPassword
+        aliasPassword,
     )
 }
 
@@ -69,6 +70,18 @@ fun loadSigningConfigFromEnvironment(): SigningConfig? {
         File(keystoreFilePath),
         keystorePassword,
         alias,
-        aliasPassword
+        aliasPassword,
     )
+}
+
+@Suppress("UnstableApiUsage")
+fun ApkSigningConfig.signWithProperties(keystorePropertiesFile: File) {
+    val signingConfig = loadSigningConfig(keystorePropertiesFile)
+        ?: loadSigningConfigFromEnvironment()
+        ?: throw IllegalStateException("No signing config found")
+
+    storeFile = keystorePropertiesFile.parentFile.resolve(signingConfig.keystoreFile)
+    storePassword = signingConfig.password
+    keyAlias = signingConfig.alias
+    keyPassword = signingConfig.aliasPassword
 }
