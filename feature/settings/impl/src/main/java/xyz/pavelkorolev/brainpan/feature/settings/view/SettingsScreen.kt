@@ -1,8 +1,11 @@
 package xyz.pavelkorolev.brainpan.feature.settings.view
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -10,12 +13,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.ui.Scaffold
-import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareScaffold
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareTopAppBar
 import xyz.pavelkorolev.brainpan.feature.settings.impl.R
 import xyz.pavelkorolev.brainpan.core.resources.R as ResourcesR
 
@@ -25,14 +27,12 @@ fun SettingsScreen(
     onExportClick: () -> Unit,
 ) {
     AppScreen {
-        Scaffold(
+        InsetAwareScaffold(
             topBar = {
-                TopAppBar(
+                InsetAwareTopAppBar(
                     title = {
                         Text(text = stringResource(id = R.string.title_settings))
                     },
-                    contentPadding = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
-                        .asPaddingValues(),
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
                             Icon(
@@ -44,39 +44,27 @@ fun SettingsScreen(
                 )
             },
         ) { contentPadding ->
-            Column(
-                modifier = Modifier
-                    .padding(contentPadding)
-                    .padding(
-                        WindowInsets.systemBars
-                            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
-                            .asPaddingValues(),
-                    ),
+            LazyColumn(
+                modifier = Modifier.padding(contentPadding),
             ) {
-                SettingsRow(
-                    text = stringResource(id = R.string.action_export_data),
-                    modifier = Modifier.clickable(onClick = onExportClick),
-                )
-                Spacer(
-                    modifier = Modifier
-                        .height(1.dp)
-                        .fillMaxWidth()
-                        .background(color = Color.Black.copy(alpha = 0.1f)),
-                )
-                SettingsRow(
-                    text = stringResource(id = R.string.action_crash),
-                    modifier = Modifier.clickable(
-                        onClick = {
-                            throw RuntimeException("Generated crash")
-                        },
-                    ),
-                )
-                Spacer(
-                    modifier = Modifier
-                        .height(1.dp)
-                        .fillMaxWidth()
-                        .background(color = Color.Black.copy(alpha = 0.1f)),
-                )
+                item {
+                    SettingsRow(
+                        text = stringResource(id = R.string.action_export_data),
+                        modifier = Modifier.clickable(onClick = onExportClick),
+                    )
+                    Divider()
+                }
+                item {
+                    SettingsRow(
+                        text = stringResource(id = R.string.action_crash),
+                        modifier = Modifier.clickable(
+                            onClick = {
+                                throw RuntimeException("Generated crash")
+                            },
+                        ),
+                    )
+                    Divider()
+                }
             }
         }
     }

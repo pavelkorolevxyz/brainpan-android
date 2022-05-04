@@ -15,10 +15,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.ui.Scaffold
-import com.google.accompanist.insets.ui.TopAppBar
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 import xyz.pavelkorolev.brainpan.core.compose.composables.BrainpanTextField
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareScaffold
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareTopAppBar
 import xyz.pavelkorolev.brainpan.feature.addnote.impl.R
 import xyz.pavelkorolev.brainpan.core.resources.R as ResourcesR
 
@@ -30,7 +30,7 @@ fun AddNoteScreen(
     onSaveClick: () -> Unit,
 ) {
     AppScreen {
-        Scaffold(
+        InsetAwareScaffold(
             topBar = {
                 AddNoteTopAppBar(onBackClick)
             },
@@ -38,11 +38,6 @@ fun AddNoteScreen(
             Column(
                 modifier = Modifier
                     .padding(contentPadding)
-                    .padding(
-                        WindowInsets.systemBars
-                            .only(WindowInsetsSides.Horizontal)
-                            .asPaddingValues(),
-                    )
                     .fillMaxSize()
                     .padding(16.dp),
             ) {
@@ -72,13 +67,10 @@ fun AddNoteScreen(
 
 @Composable
 private fun AddNoteTopAppBar(onBackClick: () -> Unit) {
-    TopAppBar(
+    InsetAwareTopAppBar(
         title = {
             Text(text = stringResource(id = R.string.title_add_note))
         },
-        contentPadding = WindowInsets.systemBars
-            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
-            .asPaddingValues(),
         navigationIcon = {
             IconButton(onClick = onBackClick) {
                 Icon(

@@ -4,7 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Settings
@@ -14,11 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.ui.Scaffold
-import com.google.accompanist.insets.ui.TopAppBar
 import kotlinx.coroutines.launch
 import xyz.pavelkorolev.brainpan.core.compose.composables.AppScreen
 import xyz.pavelkorolev.brainpan.core.compose.composables.EmptyView
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareFloatingActionButton
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareScaffold
+import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareTopAppBar
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCell
@@ -34,7 +38,7 @@ fun NoteListScreen(
     AppScreen {
         val lazyListState = rememberLazyListState()
         val coroutineScope = rememberCoroutineScope()
-        Scaffold(
+        InsetAwareScaffold(
             topBar = {
                 NoteListTopAppBar(
                     onBackClick = {
@@ -45,9 +49,6 @@ fun NoteListScreen(
                     },
                     onSettingsClick = onSettingsClick,
                 )
-            },
-            bottomBar = {
-                Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             },
             floatingActionButton = {
                 NoteListFloatingActionButton(onClick = onAddClick)
@@ -61,15 +62,15 @@ fun NoteListScreen(
                 ) {
                     CircularProgressIndicator()
                 }
-                return@Scaffold
+                return@InsetAwareScaffold
             }
-            val notes = state.notes ?: return@Scaffold
+            val notes = state.notes ?: return@InsetAwareScaffold
             if (notes.isEmpty()) {
                 EmptyView()
-                return@Scaffold
+                return@InsetAwareScaffold
             }
             LazyColumn(
-                contentPadding = WindowInsets.systemBars.asPaddingValues(),
+                contentPadding = contentPadding,
                 state = lazyListState,
             ) {
                 var prevDate: LocalDate? = null
@@ -101,13 +102,10 @@ private fun NoteListTopAppBar(
     onSettingsClick: () -> Unit,
     onBackClick: () -> Unit,
 ) {
-    TopAppBar(
+    InsetAwareTopAppBar(
         title = {
             Text(stringResource(id = R.string.app_name))
         },
-        contentPadding = WindowInsets.systemBars
-            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
-            .asPaddingValues(),
         actions = {
             IconButton(onClick = onSettingsClick) {
                 Icon(Icons.Filled.Settings, contentDescription = null)
@@ -119,14 +117,7 @@ private fun NoteListTopAppBar(
 
 @Composable
 private fun NoteListFloatingActionButton(onClick: () -> Unit) {
-    FloatingActionButton(
-        onClick = onClick,
-        modifier = Modifier.windowInsetsPadding(
-            WindowInsets.systemBars.only(
-                WindowInsetsSides.Horizontal,
-            ),
-        ),
-    ) {
+    InsetAwareFloatingActionButton(onClick = onClick) {
         Icon(
             imageVector = Icons.Default.Add,
             contentDescription = stringResource(id = R.string.add_note),
