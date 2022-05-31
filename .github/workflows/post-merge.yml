@@ -27,11 +27,6 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
-      - name: Create google-services.json
-        env:
-          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $DATA > app/google-services.json
-
       - name: Compile
         run: ./gradlew :app:compileReleaseKotlin
 
