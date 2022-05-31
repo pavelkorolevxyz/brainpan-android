@@ -59,7 +59,7 @@ fun SettingsScreen(
                         text = stringResource(id = R.string.action_crash),
                         modifier = Modifier.clickable(
                             onClick = {
-                                throw RuntimeException("Generated crash")
+                                throw SampleException()
                             },
                         ),
                     )
@@ -83,3 +83,5 @@ fun SettingsRow(
         Text(text = text)
     }
 }
+
+class SampleException : RuntimeException()
