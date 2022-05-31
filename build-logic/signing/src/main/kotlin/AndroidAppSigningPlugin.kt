@@ -78,7 +78,7 @@ fun loadSigningConfigFromEnvironment(): SigningConfig? {
 fun ApkSigningConfig.signWithProperties(keystorePropertiesFile: File) {
     val signingConfig = loadSigningConfig(keystorePropertiesFile)
         ?: loadSigningConfigFromEnvironment()
-        ?: throw IllegalStateException("No signing config found")
+        ?: return
 
     storeFile = keystorePropertiesFile.parentFile.resolve(signingConfig.keystoreFile)
     storePassword = signingConfig.password
