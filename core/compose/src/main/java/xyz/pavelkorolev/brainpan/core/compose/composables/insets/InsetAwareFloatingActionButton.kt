@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Shape
 
 /**
  * A [FloatingActionButton] implementation which is padded according to system bars size.
- * Event accompanist implementation doesn't set right system bars insets in landscape.
+ * Even accompanist implementation doesn't set right system bars insets in landscape.
  */
 @Composable
 fun InsetAwareFloatingActionButton(

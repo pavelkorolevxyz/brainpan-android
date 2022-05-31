@@ -11,7 +11,7 @@ import com.google.accompanist.insets.ui.Scaffold
 
 /**
  * A [Scaffold] implementation which content padded according to system bars size.
- * Event accompanist implementation doesn't set right system bars insets in landscape.
+ * Even accompanist implementation doesn't set right system bars insets in landscape.
  */
 @Composable
 fun InsetAwareScaffold(
