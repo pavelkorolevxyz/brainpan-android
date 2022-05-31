@@ -1,0 +1,84 @@
+{
+    "project_info": {
+        "project_number": "264960910581",
+        "project_id": "pavelkorolevxyz-brainpan",
+        "storage_bucket": "pavelkorolevxyz-brainpan.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:264960910581:android:44ed830e64dd3d771e91bc",
+                "android_client_info": {
+                    "package_name": "xyz.pavelkorolev.brainpan"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "264960910581-t8lppjlcr9teslhd3c20aa29k44g0c50.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "xyz.pavelkorolev.brainpan",
+                        "certificate_hash": "3da5dd64b9ea3127237fe374260e463d3540ed7e"
+                    }
+                },
+                {
+                    "client_id": "264960910581-ja9mk512vtp0c3007atdptee5nart6ih.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyAgFiL4ZXQePAdHHSeAP06QmWbuvN5N__E"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "264960910581-ja9mk512vtp0c3007atdptee5nart6ih.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:264960910581:android:07e1f5b0fafacd4c1e91bc",
+                "android_client_info": {
+                    "package_name": "xyz.pavelkorolev.brainpan.debug"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "264960910581-4gp6oatjh2g4o0fij3jp6l8ravnkili5.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "xyz.pavelkorolev.brainpan.debug",
+                        "certificate_hash": "72c26f87af5a5a43a1c6496c040581b3c3b7face"
+                    }
+                },
+                {
+                    "client_id": "264960910581-ja9mk512vtp0c3007atdptee5nart6ih.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyAgFiL4ZXQePAdHHSeAP06QmWbuvN5N__E"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "264960910581-ja9mk512vtp0c3007atdptee5nart6ih.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
