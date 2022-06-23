@@ -4,9 +4,9 @@ import xyz.pavelkorolev.brainpan.core.data.api.NoteRepository
 import xyz.pavelkorolev.brainpan.core.model.Note
 import javax.inject.Inject
 
-class LoadNotesUseCase @Inject constructor(
+class DeleteNoteUseCase @Inject constructor(
     private val repository: NoteRepository,
 ) {
 
-    suspend operator fun invoke(): List<Note> = repository.getNotes()
+    suspend operator fun invoke(note: Note) = repository.delete(note)
 }

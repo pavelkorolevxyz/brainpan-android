@@ -1,7 +1,10 @@
 package xyz.pavelkorolev.brainpan.feature.notelist.impl.view
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
@@ -23,17 +26,19 @@ import xyz.pavelkorolev.brainpan.core.compose.composables.EmptyView
 import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareFloatingActionButton
 import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareScaffold
 import xyz.pavelkorolev.brainpan.core.compose.composables.insets.InsetAwareTopAppBar
+import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.R
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.DateTimeCell
-import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCell
+import xyz.pavelkorolev.brainpan.feature.notelist.impl.view.composables.NoteCellDismissable
 import java.time.LocalDate
 
 @Composable
 fun NoteListScreen(
     state: NoteListViewState,
-    onHeaderClick: () -> Unit,
+    onAppBarClick: () -> Unit,
     onAddClick: () -> Unit,
     onSettingsClick: () -> Unit,
+    onDismiss: (Note) -> Unit,
 ) {
     AppScreen {
         val lazyListState = rememberLazyListState()
@@ -41,8 +46,8 @@ fun NoteListScreen(
         InsetAwareScaffold(
             topBar = {
                 NoteListTopAppBar(
-                    onBackClick = {
-                        onHeaderClick()
+                    onClick = {
+                        onAppBarClick()
                         coroutineScope.launch {
                             lazyListState.animateScrollToItem(0)
                         }
@@ -82,10 +87,12 @@ fun NoteListScreen(
                             DateTimeCell(dateTime = note.dateTime)
                         }
                     }
-                    item {
-                        NoteCell(
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                            note = note,
+                    item(key = note.id) {
+                        NoteCellDismissable(
+                            note,
+                            onDismiss = {
+                                onDismiss(note)
+                            },
                         )
                     }
                 }
@@ -100,7 +107,7 @@ fun NoteListScreen(
 @Composable
 private fun NoteListTopAppBar(
     onSettingsClick: () -> Unit,
-    onBackClick: () -> Unit,
+    onClick: () -> Unit,
 ) {
     InsetAwareTopAppBar(
         title = {
@@ -111,7 +118,7 @@ private fun NoteListTopAppBar(
                 Icon(Icons.Filled.Settings, contentDescription = null)
             }
         },
-        modifier = Modifier.clickable(onClick = onBackClick),
+        modifier = Modifier.clickable(onClick = onClick),
     )
 }
 
@@ -120,7 +127,7 @@ private fun NoteListFloatingActionButton(onClick: () -> Unit) {
     InsetAwareFloatingActionButton(onClick = onClick) {
         Icon(
             imageVector = Icons.Default.Add,
-            contentDescription = stringResource(id = R.string.add_note),
+            contentDescription = stringResource(id = R.string.action_add),
         )
     }
 }

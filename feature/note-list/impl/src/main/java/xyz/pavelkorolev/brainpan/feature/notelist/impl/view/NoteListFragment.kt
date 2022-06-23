@@ -42,9 +42,10 @@ class NoteListFragment : BaseFragment() {
     ): View? = fragmentInsetsComposeView {
         NoteListScreen(
             state = viewModel.viewState,
-            onHeaderClick = { viewModel.onHeaderClick() },
-            onAddClick = { viewModel.onAddClick() },
-            onSettingsClick = { viewModel.onSettingsClick() },
+            onAppBarClick = viewModel::onAppBarClick,
+            onAddClick = viewModel::onAddClick,
+            onSettingsClick = viewModel::onSettingsClick,
+            onDismiss = viewModel::onDismiss,
         )
     }
 

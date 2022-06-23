@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.addnote.api.AddNoteFeatureApi
+import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.DeleteNoteUseCase
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.LoadNotesUseCase
 import xyz.pavelkorolev.brainpan.feature.notelist.impl.domain.NoteListUpdateUseCase
 import xyz.pavelkorolev.brainpan.feature.settings.api.SettingsFeatureApi
@@ -25,6 +26,7 @@ class NoteListViewModel @Inject constructor(
     private val settingsFeatureApi: SettingsFeatureApi,
     private val loadNotesUseCase: LoadNotesUseCase,
     private val noteListUpdateUseCase: NoteListUpdateUseCase,
+    private val deleteNoteUseCase: DeleteNoteUseCase,
 ) : ViewModel() {
 
     var viewState by mutableStateOf(NoteListViewState())
@@ -52,7 +54,7 @@ class NoteListViewModel @Inject constructor(
         }
     }
 
-    fun onHeaderClick() {
+    fun onAppBarClick() {
         viewState = NoteListViewState()
         loadNotes()
     }
@@ -63,5 +65,12 @@ class NoteListViewModel @Inject constructor(
 
     fun onSettingsClick() {
         settingsFeatureApi.navigateSettings()
+    }
+
+    fun onDismiss(note: Note) {
+        viewModelScope.launch {
+            deleteNoteUseCase(note)
+            loadNotes()
+        }
     }
 }

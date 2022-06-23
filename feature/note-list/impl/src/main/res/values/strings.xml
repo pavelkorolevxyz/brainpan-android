@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">Brainpan</string>
-    <string name="add_note">Add</string>
+    <string name="action_add">Add</string>
+    <string name="action_delete">Delete</string>
 
 </resources>

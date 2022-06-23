@@ -11,4 +11,6 @@ object BrainpanColor {
     val FountainBlue = Color(0xFF4EBFBC)
     val Keppel = Color(0xFF45A8A6)
     val White = Color(0xFFFFFFFF)
+    val SunsetOrange = Color(0xFFFE5F55)
+    val Concrete = Color(0xFFF3F2F2)
 }
