@@ -9,7 +9,7 @@ class NoteExportMapper @Inject constructor() {
     fun map(note: Note): NoteExportEntity {
         return NoteExportEntity(
             text = note.text,
-            dateTime = note.dateTime.toString(),
+            createdDateTime = note.createdDateTime.toString(),
         )
     }
 }

@@ -80,11 +80,11 @@ fun NoteListScreen(
             ) {
                 var prevDate: LocalDate? = null
                 for (note in notes) {
-                    val noteDate = note.dateTime.toLocalDate()
+                    val noteDate = note.createdDateTime.toLocalDate()
                     if (prevDate != noteDate) {
                         prevDate = noteDate
                         item {
-                            DateTimeCell(dateTime = note.dateTime)
+                            DateTimeCell(dateTime = note.createdDateTime)
                         }
                     }
                     item(key = note.id) {

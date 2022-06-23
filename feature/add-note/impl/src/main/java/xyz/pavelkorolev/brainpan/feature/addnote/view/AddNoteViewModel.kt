@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.launch
-import xyz.pavelkorolev.brainpan.core.model.Note
 import xyz.pavelkorolev.brainpan.feature.addnote.domain.SaveNoteUseCase
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 class AddNoteViewModel @Inject constructor(
@@ -30,11 +28,7 @@ class AddNoteViewModel @Inject constructor(
 
     fun onSaveClick() {
         viewModelScope.launch {
-            val note = Note(
-                text = text,
-                dateTime = LocalDateTime.now(),
-            )
-            saveNoteUseCase(note)
+            saveNoteUseCase(text = text)
             router.exit()
         }
     }

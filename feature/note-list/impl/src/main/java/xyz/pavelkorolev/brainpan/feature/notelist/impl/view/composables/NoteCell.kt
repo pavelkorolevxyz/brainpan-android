@@ -50,7 +50,7 @@ fun NoteCell(
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(0.3f),
-            text = note.dateTime.format(
+            text = note.createdDateTime.format(
                 DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT),
             ),
             fontSize = 12.sp,

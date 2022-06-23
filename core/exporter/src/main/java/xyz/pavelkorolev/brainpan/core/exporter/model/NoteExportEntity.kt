@@ -9,6 +9,6 @@ data class NoteExportEntity(
     @SerialName("text")
     val text: String,
 
-    @SerialName("createdDate")
-    val dateTime: String,
+    @SerialName("createdDateTime")
+    val createdDateTime: String,
 )

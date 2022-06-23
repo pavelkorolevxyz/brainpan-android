@@ -4,6 +4,6 @@ import java.time.LocalDateTime
 
 data class Note(
     val text: String,
-    val dateTime: LocalDateTime,
+    val createdDateTime: LocalDateTime,
     val id: Long? = null,
 )

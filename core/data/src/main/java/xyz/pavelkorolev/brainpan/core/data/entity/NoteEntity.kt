@@ -10,8 +10,8 @@ data class NoteEntity(
     @ColumnInfo(name = "text")
     val text: String,
 
-    @ColumnInfo(name = "date_created")
-    val createdDate: String,
+    @ColumnInfo(name = "datetime_created")
+    val createdDateTime: String,
 
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,

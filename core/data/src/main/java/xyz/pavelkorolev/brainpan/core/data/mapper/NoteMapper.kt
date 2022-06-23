@@ -11,13 +11,13 @@ class NoteMapper @Inject constructor() {
         Note(
             id = noteEntity.id,
             text = noteEntity.text,
-            dateTime = LocalDateTime.parse(noteEntity.createdDate),
+            createdDateTime = LocalDateTime.parse(noteEntity.createdDateTime),
         )
 
     fun reverseMap(note: Note): NoteEntity =
         NoteEntity(
             id = note.id,
             text = note.text,
-            createdDate = note.dateTime.toString(),
+            createdDateTime = note.createdDateTime.toString(),
         )
 }
