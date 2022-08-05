@@ -1,7 +1,6 @@
 plugins {
     id("convention.android.library")
     id("convention.detekt")
-    id("com.google.gms.google-services")
 }
 
 dependencies {
