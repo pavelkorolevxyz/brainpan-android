@@ -1,15 +1,7 @@
 plugins {
     id("convention.android.library")
+    id("convention.android.compose")
     id("convention.detekt")
-}
-
-android {
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
-    }
 }
 
 dependencies {
