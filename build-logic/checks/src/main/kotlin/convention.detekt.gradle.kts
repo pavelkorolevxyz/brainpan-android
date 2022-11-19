@@ -1,14 +1,17 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.report.ReportMergeTask
+import org.gradle.accessors.dm.LibrariesForLibs
 
 plugins {
     base
     id("io.gitlab.arturbosch.detekt")
 }
 
+val libs = the<LibrariesForLibs>()
+
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.21.0")
+    detektPlugins(libs.detekt.formatting)
 }
 
 val configFile = files("$rootDir/config/detekt/config.yml")
